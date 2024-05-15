@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azahajur <azahajur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lorea <lorea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 23:23:24 by azahajur          #+#    #+#             */
-/*   Updated: 2024/03/08 04:46:15 by azahajur         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:19:46 by lorea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,6 @@ int ft_cont(t_list *stack)
         stack = stack->next;
    } 
    return(i);
-}
-
-void ft_check_char(char **argv)
-{
-    int i;
-    int j;
-    
-    i = 0;
-    while (argv[i] != NULL)
-    {
-        j = 0;
-        while(argv[i][j])
-        {
-            if(!ft_isdigit(argv[i][j]))
-            {
-                ft_putstr_fd("[Error]: No_Num_Arg", 2);
-                exit(1);
-            } 
-            j++;
-        }
-        i++;
-    }
-    
 }
 
 void ft_print_list(t_list *stack)
@@ -66,18 +43,23 @@ void ft_init_a(t_stack *d_st, char *argv[], int argc)
     t_list  *node;
     
     d_st->stack_a = (t_list *)malloc(sizeof(t_list));
-    d_st->stack_a->cont = ft_atoi(argv[1]);
+    if (argc == 2)
+    {
+        d_st->stack_a->cont = ft_atol(argv[1]);
+        return;
+    }
+    d_st->stack_a->cont = ft_atol(argv[1]);
     d_st->stack_a->next = (t_list *)malloc(sizeof(t_list));
     node = d_st->stack_a->next;
     i = 2;
-    while (i < argc - 1 && argv[i])
+    while (i < (argc - 1) && argv[i])
     {
-        node->cont = ft_atoi(argv[i]);
+        node->cont = ft_atol(argv[i]);
         node->next = (t_list *)malloc(sizeof(t_list));
         node = node->next;
         i++;
     }
-    node->cont = ft_atoi(argv[i]);
+    node->cont = ft_atol(argv[i]);
     node->next = NULL;
 }
 
@@ -95,27 +77,19 @@ int	main(int argc, char *argv[])
 {
     t_stack *d_st;
     
-    if(argc < 1)
-        return(0);
-    //ft_dupl_n(argc, argv)//funcion que comprueba si hay número duplicados || ft_int_n(arc, argv)) // función que comprueba que todos los números son enteros
-    //     ft_putstr_fd("Error", 2);
-    // ft_check_char(char **argv); // Comprueba todo argv por si hay un char
-    d_st = (t_stack *)malloc(sizeof(t_stack));
-    ft_init_a(d_st, argv, argc); 
-    d_st->size_a = ft_cont(d_st->stack_a);
-    if(d_st->size_a == 1)
-        return(0);
-    if(d_st->size_a == 3 || d_st->size_a == 2)
+    if(argc > 1) 
     {
-        d_st->stack_a = ft_order_mx3(d_st->stack_a, d_st->size_a);
-        return(0);
+        ft_dupl_n(argc, argv);
+        ft_char_ent(argv);
+        d_st = (t_stack *)malloc(sizeof(t_stack));
+        ft_init_a(d_st, argv, argc); 
+        d_st->size_a = ft_cont(d_st->stack_a);
+        d_st->stack_a = ft_check_order(d_st->stack_a, d_st->size_a);
+        //ft_init_b(d_st);
+        //d_st->stack_a = ft_order_3(d_st->stack_a);
+        //ft_order_cost(d_st);
+        //ft_putstr_fd("=====================\n",1);
+        //ft_print_list(d_st->stack_b); 
     }
-    ft_init_b(d_st);
-    d_st->stack_a = ft_order_mx3(d_st->stack_a, d_st->size_a);
-    ft_order_cost(d_st);
-    // //Se viene algoritmo de ordenamiento.
-    ft_print_list(d_st->stack_a); 
-    ft_putstr_fd("JUAJAJAJAJA\n",1);
-    ft_print_list(d_st->stack_b); 
     return(0);
 }

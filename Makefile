@@ -3,42 +3,46 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: azahajur <azahajur@student.42.fr>          +#+  +:+       +#+         #
+#    By: lorea <lorea@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/07/12 14:44:13 by azahajur          #+#    #+#              #
-#    Updated: 2023/07/23 16:36:54 by azahajur         ###   ########.fr        #
+#    Created: 2024/02/05 21:10:40 by azahajur          #+#    #+#              #
+#    Updated: 2024/05/15 08:49:47 by lorea            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-
-FILES = ft_printf.c ft_putchar.c ft_putstr.c ft_putnbr.c\
-		ft_putnbr_hex.c ft_putnbr_ptr.c	ft_putnbr_u.c\
+NAME = push_swap
+FILES = $(shell find -type f -name "*.c")
+LIBFT = include/Libft/libft.a
 
 # Genera los archivos .o para cada archivo .c
 OBJ = $(FILES:.c=.o)
-
 FLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+$(NAME): $(OBJ) $(LIBFT)
+	gcc $(OBJ) $(LIBFT) -o $(NAME)
 	
 # Solo se compilan los archivos que han cambiado. (Es una regla de cancelación, evita que se recompilen archivos que no se han actualizado).
 %.o: %.c
 	gcc $(FLAGS) -c -o $@ $<
 	
+# Compila el make de Libft
+$(LIBFT):
+	make -C include/Libft
+	
 # Borra todos los archivos de la variable OBJ
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) 
+	make -C include/Libft clean
 	
 # Borra todos los archivos de la variable OBJ y NAME
 fclean: clean
 	rm -f $(NAME) $(OBJ)
+	make -C include/Libft fclean
 	
 # Hace un re-make, borra todo y ejecuta el Make como si fuera la primera vez.
 re: fclean all 
 
 # le dice al make que estos nombres no son archivos
-.PHONY: re all fclean clean
+.PHONY: re all fclean clean $(LIBFT)
