@@ -5,28 +5,25 @@
 #                                                     +:+ +:+         +:+      #
 #    By: azahajur <azahajur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/05 21:10:40 by azahajur          #+#    #+#              #
-#    Updated: 2024/03/08 02:48:09 by azahajur         ###   ########.fr        #
+#    Created: 2023/07/12 14:44:13 by azahajur          #+#    #+#              #
+#    Updated: 2023/07/23 16:36:54 by azahajur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
-FILES = push_swap.c op_stack_a.c op_stack_b.c op_stack_s.c ps_utils.c\
-		ps_ft_cost.c\
-		
-LIBFT = Libft/libft.a
+NAME = libftprintf.a
+
+FILES = ft_printf.c ft_putchar.c ft_putstr.c ft_putnbr.c\
+		ft_putnbr_hex.c ft_putnbr_ptr.c	ft_putnbr_u.c\
 
 # Genera los archivos .o para cada archivo .c
 OBJ = $(FILES:.c=.o)
+
 FLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
-$(LIBFT):
-	MAKE -C Libft
-
-$(NAME): $(OBJ) $(LIBFT)
-	cc $(OBJ) $(LIBFT) -o $(NAME)
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 	
 # Solo se compilan los archivos que han cambiado. (Es una regla de cancelación, evita que se recompilen archivos que no se han actualizado).
 %.o: %.c
@@ -34,16 +31,14 @@ $(NAME): $(OBJ) $(LIBFT)
 	
 # Borra todos los archivos de la variable OBJ
 clean:
-	rm -f $(OBJ) 
-	MAKE -C Libft clean
-
+	rm -f $(OBJ)
+	
 # Borra todos los archivos de la variable OBJ y NAME
 fclean: clean
 	rm -f $(NAME) $(OBJ)
-	MAKE -C Libft fclean
 	
 # Hace un re-make, borra todo y ejecuta el Make como si fuera la primera vez.
 re: fclean all 
 
 # le dice al make que estos nombres no son archivos
-.PHONY: re all fclean clean $(LIBFT)
+.PHONY: re all fclean clean
