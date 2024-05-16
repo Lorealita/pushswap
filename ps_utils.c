@@ -6,7 +6,7 @@
 /*   By: lorea <lorea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:53:07 by lorea             #+#    #+#             */
-/*   Updated: 2024/05/16 10:41:41 by lorea            ###   ########.fr       */
+/*   Updated: 2024/05/16 14:46:47 by lorea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,45 @@ void ft_free_stack(t_stack *d_st)
     }
     free (d_st->stack_b);
     free (d_st);
+    return;
+}
+
+void    ft_pos_stack(t_stack *d_st)
+{
+    ft_pos_check(d_st->stack_b);
+    ft_pos_check(d_st->stack_a); 
+}
+
+t_list  *ft_lowest(t_list *stack_a)
+{
+    t_list  *node;
+    t_list  *lowest;
+
+    node = stack_a;
+    lowest = node;
+    while (node)
+    {
+        if (node->cont < lowest->cont)
+            lowest = node;
+        node = node->next;       
+    }
+    return(lowest);
+}
+
+void    ft_sort_boss(t_stack *d_st)
+{
+    ft_pos_stack(d_st);
+    d_st->size_a = ft_cont(d_st->stack_a);
+    d_st->lowest = ft_lowest(d_st->stack_a);
+    if (d_st->lowest->pos_n > d_st->size_a / 2)
+    {
+        while (!ft_check_pos(d_st->stack_a))
+            d_st->stack_a = ft_rra(d_st->stack_a);
+    }
+    else
+    {
+        while (!ft_check_pos(d_st->stack_a))
+            d_st->stack_a = ft_ra(d_st->stack_a);
+    }
     return;
 }

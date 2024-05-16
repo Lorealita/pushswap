@@ -6,7 +6,7 @@
 /*   By: lorea <lorea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:20:25 by lorea             #+#    #+#             */
-/*   Updated: 2024/05/15 09:36:55 by lorea            ###   ########.fr       */
+/*   Updated: 2024/05/16 14:58:11 by lorea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,18 @@ void ft_char_ent(char *argv[])
         i++;
     }
     return;
+}
+
+int ft_check_pos(t_list *stack)
+{
+    t_list  *node;
+    
+    node = stack;
+    while (node)
+    {
+        if (node->next && node->cont > node->next->cont)
+            return(0);
+        node = node->next;
+    }
+    return(1);
 }

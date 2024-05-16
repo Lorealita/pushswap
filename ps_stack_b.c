@@ -6,7 +6,7 @@
 /*   By: lorea <lorea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 04:05:47 by azahajur          #+#    #+#             */
-/*   Updated: 2024/05/16 09:27:02 by lorea            ###   ########.fr       */
+/*   Updated: 2024/05/16 12:28:28 by lorea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_list    *ft_rb(t_list *stack_b)
     t_list  *aux;
     t_list  *aux2;
     
-    if(!stack_b->next)
+    if(!stack_b->next || !stack_b)
         return(stack_b);
     aux = stack_b;
     aux2 = stack_b->next;
@@ -64,7 +64,7 @@ t_list  *ft_rrb(t_list *stack_b)
 
 void    ft_pb(t_stack *d_st)
 {
-    t_list *aux;
+    t_list *node;
     
     if(!d_st->stack_b)
     {
@@ -74,14 +74,13 @@ void    ft_pb(t_stack *d_st)
     }
     else
     {
-        aux = d_st->stack_b;
+        node = d_st->stack_b;
         d_st->stack_b = d_st->stack_a;
         d_st->stack_a = d_st->stack_a->next;
-        d_st->stack_b->next = aux;   
+        d_st->stack_b->next = node;   
     }
-    ft_pos_check(d_st->stack_b);
-    ft_pos_check(d_st->stack_a);
-    d_st->size_a--;
-    d_st->size_b++;
+    ft_cont(d_st->stack_a);
+	ft_cont(d_st->stack_b);
     ft_putstr_fd("pb\n", 1);
+	return;
 }

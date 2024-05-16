@@ -6,7 +6,7 @@
 /*   By: lorea <lorea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 19:07:02 by azahajur          #+#    #+#             */
-/*   Updated: 2024/05/16 10:32:26 by lorea            ###   ########.fr       */
+/*   Updated: 2024/05/16 14:41:01 by lorea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,16 @@ void    ft_pos_check(t_list *stack)
     }
 }
 
-void    ft_check_sort(t_list *stack, int size)
+void    ft_choose_sort(t_list *stack, int size)
 {
     if(size == 3) 
     {
         stack = ft_sort_3(stack);
-        ft_print_list(stack); 
         return;
     }
     else if (size == 2) 
     {
         stack = ft_sort_2(stack);
-        ft_print_list(stack); 
         return;
     }
 }
@@ -82,7 +80,7 @@ t_list *ft_sort_3(t_list *stack)
 
 void    ft_sales(t_stack *d_st, t_list *sales)
 {
-    if (sales->cost_a == 1 && sales->cost_b ==1)
+    if (sales->cost_a == 0 && sales->cost_b == 0)
         ft_pa(d_st);
     else if (sales->cost_a < 0 && sales->cost_b < 0)
         d_st = ft_rrr(d_st);
@@ -96,6 +94,6 @@ void    ft_sales(t_stack *d_st, t_list *sales)
         d_st->stack_b = ft_rrb(d_st->stack_b);
     else if (sales->cost_b > 0)
         d_st->stack_b = ft_rb(d_st->stack_b);
-    
+    return;
 }
 

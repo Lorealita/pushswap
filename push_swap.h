@@ -6,7 +6,7 @@
 /*   By: lorea <lorea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 23:24:28 by azahajur          #+#    #+#             */
-/*   Updated: 2024/05/16 06:36:56 by lorea            ###   ########.fr       */
+/*   Updated: 2024/05/16 15:06:40 by lorea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ typedef struct s_stack
 {
 	t_list	*stack_a; //cabeza stack a
 	t_list	*stack_b; // cabeza stack b
+	t_list	*lowest; // el nodo con el valor + peque
 	int		size_a;
 	int		size_b;
 }			t_stack;
 
 //PUSH_SWAP
-int			ft_cont(t_list *stack);
 int    		ft_mid_value(t_list *stack, int size);
-void		ft_check_char(char **argv);
+int			ft_cont(t_list *stack);
 void		ft_init_a(t_stack *list, char *argv[], int argc);
 void		ft_init_b(t_stack *d_st);
 
@@ -70,17 +70,22 @@ t_list		*ft_mov_cost(t_stack *d_st);
 
 //PS_SORT
 void    	ft_pos_check(t_list *stack);
-void		ft_check_sort(t_list *stack, int size);
+void		ft_choose_sort(t_list *stack, int size);
 t_list		*ft_sort_2(t_list *stack);
 t_list		*ft_sort_3(t_list *stack);
 void    	ft_sales(t_stack *d_st, t_list *sales);
 
-//PS_ERRORS
-void 		ft_char_ent(char *argv[]);
+//PS_ERRORS_CHECK
 void 		ft_dupl_n(int argc, char *argv[]);
+void 		ft_char_ent(char *argv[]);
+int			ft_check_pos(t_list *stack);
 
 //PS_UTILS
 void		ft_print_list(t_list *head);
 void 		ft_free_stack(t_stack *d_st);
+void		ft_pos_stack(t_stack *d_st);
+t_list		*ft_lowest(t_list *stack_a);
+void    	ft_sort_boss(t_stack *d_st);
+
 
 #endif
