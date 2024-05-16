@@ -6,7 +6,7 @@
 /*   By: lorea <lorea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 19:07:02 by azahajur          #+#    #+#             */
-/*   Updated: 2024/05/15 17:56:40 by lorea            ###   ########.fr       */
+/*   Updated: 2024/05/16 10:32:26 by lorea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void    ft_pos_check(t_list *stack)
     t_list *node;
     int cnt;
 
-    cnt = 1;
+    cnt = 0;
     node = stack;
     while (node != NULL)
     {

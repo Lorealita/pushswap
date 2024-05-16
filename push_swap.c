@@ -6,7 +6,7 @@
 /*   By: lorea <lorea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 23:23:24 by azahajur          #+#    #+#             */
-/*   Updated: 2024/05/16 06:32:39 by lorea            ###   ########.fr       */
+/*   Updated: 2024/05/16 10:43:07 by lorea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,17 @@ int	main(int argc, char *argv[])
         {
             ft_pos_check(d_st->stack_b);
             ft_pos_check(d_st->stack_a);
-            // ft_print_list(d_st->stack_a); /// SEGUNDA IMPRESION
-            // ft_putstr_fd("*******************\n", 1); /// SEPARADOR
-            // ft_print_list(d_st->stack_b); /// IMPRSION DE B
-            // ft_putstr_fd(">>>>>>>>>>>>>>>>>\n", 1); /// SEPARADOR
+            ft_print_list(d_st->stack_a); /// SEGUNDA IMPRESION
+            ft_putstr_fd("*******************\n", 1); /// SEPARADOR
+            ft_print_list(d_st->stack_b); /// IMPRSION DE B
+            ft_putstr_fd(">>>>>>>>>>>>>>>>>\n", 1); /// SEPARADOR
             ft_sort_cost(d_st);
             node = ft_mov_cost(d_st);
             ft_sales(d_st, node);
-            // ft_print_list(d_st->stack_a); /// SEGUNDA IMPRESION
-            // ft_putstr_fd("*******************\n", 1); /// SEPARADOR
-            // ft_print_list(d_st->stack_b); /// IMPRSION DE B
-            // ft_putstr_fd("00000000000000000000\n", 1); /// SEPARADOR
+            ft_print_list(d_st->stack_a); /// SEGUNDA IMPRESION
+            ft_putstr_fd("*******************\n", 1); /// SEPARADOR
+            ft_print_list(d_st->stack_b); /// IMPRSION DE B
+            ft_putstr_fd("00000000000000000000\n", 1); /// SEPARADOR
         }
         ft_free_stack(d_st);
         return(0);
