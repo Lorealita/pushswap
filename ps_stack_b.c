@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_stack_b.c                                       :+:      :+:    :+:   */
+/*   ps_stack_b.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azahajur <azahajur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lorea <lorea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 04:05:47 by azahajur          #+#    #+#             */
-/*   Updated: 2024/03/08 03:12:19 by azahajur         ###   ########.fr       */
+/*   Updated: 2024/05/16 09:27:02 by lorea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,7 @@ void    ft_pb(t_stack *d_st)
     }
     ft_pos_check(d_st->stack_b);
     ft_pos_check(d_st->stack_a);
+    d_st->size_a--;
+    d_st->size_b++;
     ft_putstr_fd("pb\n", 1);
 }

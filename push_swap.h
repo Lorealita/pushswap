@@ -6,12 +6,13 @@
 /*   By: lorea <lorea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 23:24:28 by azahajur          #+#    #+#             */
-/*   Updated: 2024/05/15 13:19:07 by lorea            ###   ########.fr       */
+/*   Updated: 2024/05/16 06:36:56 by lorea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
 # include "include/Libft/libft.h"
 # include <limits.h>
 # include <stdio.h>
@@ -38,8 +39,8 @@ typedef struct s_stack
 
 //PUSH_SWAP
 int			ft_cont(t_list *stack);
+int    		ft_mid_value(t_list *stack, int size);
 void		ft_check_char(char **argv);
-void		ft_print_list(t_list *head);
 void		ft_init_a(t_stack *list, char *argv[], int argc);
 void		ft_init_b(t_stack *d_st);
 
@@ -60,23 +61,26 @@ void		ft_ss(t_stack *d_st);
 t_stack		*ft_rr(t_stack *d_st);
 t_stack		*ft_rrr(t_stack *d_st);
 
-//PS_FT_COST
+//PS_COST
 void		ft_target(t_list *stack_a, t_list *stack_b, int min);
 void		ft_pos_o(t_stack *d_st);
-void		ft_order_cost(t_stack *d_st);
+void		ft_sort_cost(t_stack *d_st);
 int			ft_sign(int cost);
 t_list		*ft_mov_cost(t_stack *d_st);
 
-//PS_ORDER
+//PS_SORT
 void    	ft_pos_check(t_list *stack);
-t_list		*ft_check_order(t_list *stack, int size);
-t_list		*ft_order_2(t_list *stack);
-t_list		*ft_order_3(t_list *stack);
+void		ft_check_sort(t_list *stack, int size);
+t_list		*ft_sort_2(t_list *stack);
+t_list		*ft_sort_3(t_list *stack);
 void    	ft_sales(t_stack *d_st, t_list *sales);
 
 //PS_ERRORS
-void ft_char_ent(char *argv[]);
-void ft_dupl_n(int argc, char *argv[]);
+void 		ft_char_ent(char *argv[]);
+void 		ft_dupl_n(int argc, char *argv[]);
 
+//PS_UTILS
+void		ft_print_list(t_list *head);
+void 		ft_free_stack(t_stack *d_st);
 
 #endif
