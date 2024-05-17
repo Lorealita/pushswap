@@ -6,7 +6,7 @@
 /*   By: lorea <lorea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 23:23:24 by azahajur          #+#    #+#             */
-/*   Updated: 2024/05/16 15:12:16 by lorea            ###   ########.fr       */
+/*   Updated: 2024/05/16 17:42:51 by lorea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,22 @@ void ft_init_a(t_stack *d_st, char *argv[], int argc)
 
 void ft_init_b(t_stack *d_st)
 {   
-    int     mid;
+    //int     mid;
     
-    mid = ft_mid_value(d_st->stack_a, d_st->size_a);
-    while(d_st->size_a > 3 && d_st->stack_a->next != NULL)
+    //mid = ft_mid_value(d_st->stack_a, d_st->size_a);
+    while(d_st->size_a > 3)
     {
-        if (d_st->stack_a->cont > mid)
-        {
+        // if (d_st->stack_a->cont > mid)
+        // {
             ft_pb(d_st);
-        }
-        d_st->stack_a = ft_ra(d_st->stack_a);
+        // }
+        //d_st->stack_a = ft_ra(d_st->stack_a);
         d_st->stack_a = d_st->stack_a->next;
     } 
-    if (d_st->size_a > 3)
-    {
-        ft_pb(d_st);
-    }
+    // if (d_st->size_a > 3)
+    // {
+    //     ft_pb(d_st);
+    // }
     d_st->size_b = ft_cont(d_st->stack_b);
     return;
 }
@@ -104,7 +104,7 @@ int	main(int argc, char *argv[])
         d_st = (t_stack *)malloc(sizeof(t_stack));
         ft_init_a(d_st, argv, argc); 
         ft_choose_sort(d_st->stack_a, d_st->size_a);
-        ft_init_b(d_st); //Hace bucle!! ò_ó
+        ft_init_b(d_st); 
         ft_print_list(d_st->stack_a);
         d_st->stack_a = ft_sort_3(d_st->stack_a);
         while (d_st->stack_b)
